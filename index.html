@@ -66,12 +66,7 @@ a{color:inherit; text-decoration:none}
 .app.sb-collapsed .nav-label{display:none}
 .app.sb-collapsed .nav-item{justify-content:center; padding:9px 0}
 .app.sb-collapsed .nav-item span{display:none}
-.backup-btn .short{display:none}
-.app.sb-collapsed .backup-row{flex-direction:column}
-.app.sb-collapsed .backup-btn svg{display:none}
-.app.sb-collapsed .backup-btn .full{display:none}
-.app.sb-collapsed .backup-btn .short{display:inline}
-.app.sb-collapsed .backup-btn{padding:7px 4px; font-size:12px; gap:0}
+
 .app.sb-collapsed .theme-toggle{justify-content:center; padding:9px 6px}
 .app.sb-collapsed .theme-toggle .tt-left{display:none}
 .app.sb-collapsed .user-row{justify-content:center; padding:6px 0}
@@ -138,15 +133,7 @@ a{color:inherit; text-decoration:none}
 .user-name{font-size:13px; font-weight:600}
 .user-mail{font-size:11px; color:var(--text-3)}
 
-.backup-row{display:flex; gap:8px}
-.backup-btn{
-  flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 6px;
-  border-radius:var(--r-sm); border:1px solid var(--border); background:var(--card);
-  font-size:12px; font-weight:500; color:var(--text-2); transition:all .15s;
-}
-.backup-btn:hover{border-color:var(--accent); color:var(--accent-strong)}
-[data-theme="dark"] .backup-btn:hover{color:var(--accent)}
-.backup-btn svg{width:15px; height:15px; stroke-width:1.9}
+
 
 /* ===== 主区域 ===== */
 .main{
@@ -578,6 +565,8 @@ a{color:inherit; text-decoration:none}
 .site-menu button:hover{background:var(--bg-soft); color:var(--text)}
 .site-menu button.on{color:var(--text); font-weight:600}
 .site-menu button svg{width:15px; height:15px; stroke-width:1.9; flex:0 0 15px}
+.site-menu button.menu-sep{height:1px; padding:0; margin:4px 2px; background:var(--border); pointer-events:none}
+.site-menu button.menu-sep:hover{background:var(--border)}
 
 /* 拖拽上传 */
 .drop-zone{
@@ -700,6 +689,7 @@ a{color:inherit; text-decoration:none}
 .search-box input{
   flex:1; min-width:0; border:none; outline:none; background:transparent; padding:0 18px;
   font-size:15px; color:var(--text); font-family:inherit;
+  height:100%; line-height:normal;
 }
 .search-box input::placeholder{color:var(--text-3)}
 .se-btn{
@@ -871,18 +861,16 @@ a{color:inherit; text-decoration:none}
 [data-theme="dark"] .btn-primary{color:#0E1116}
 
 /* ===== 页脚 ===== */
-/* 撑杆：内容不足一屏时把页脚推到视口底部，内容超一屏时保持 28px 间距 */
-.af-gap{margin-top:auto; height:28px; flex:0 0 auto}
+/* 撑杆：fixed 定位后不再需要 */
+.af-gap{display:none}
 .app-foot{
-  padding:20px 4px 6px; border-top:1px solid var(--border);
-  display:flex; align-items:center; gap:18px; flex-wrap:wrap; color:var(--text-2);
+  position:fixed; left:236px; right:0; bottom:0; z-index:40;
+  padding:14px 26px 15px; border-top:1px solid var(--border);
+  background:linear-gradient(to top, var(--bg) 58%, transparent);
+  display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; color:var(--text-3);
 }
-.af-brand{display:flex; align-items:center; gap:11px}
-.af-brand .brand-mark{width:30px; height:30px; flex-basis:30px; border-radius:9px; box-shadow:0 2px 8px rgba(14,159,138,.28)}
-.af-brand .brand-mark svg{width:16px; height:16px}
-.af-name{font-size:13.5px; font-weight:700; color:var(--text)}
-.af-sub{font-size:11.5px; color:var(--text-3); margin-top:1px}
-.af-copy{width:100%; font-size:11.5px; color:var(--text-3)}
+.app.sb-collapsed .app-foot{left:68px}
+.af-copy{font-size:11px; color:var(--text-3); text-align:center; opacity:.85}
 .af-copy b{color:var(--text-2); font-weight:600}
 
 /* ===== 移动端适配 ===== */
@@ -1031,7 +1019,7 @@ html{-webkit-text-size-adjust:100%}
   .flow-stages{gap:8px; margin-bottom:14px}
   .stage-pill{padding:6px 11px; font-size:12px}
   .about-link{min-width:0; flex:1 1 100%}
-  .app-foot{flex-direction:column; align-items:flex-start; gap:12px}
+  .app-foot{left:0; flex-direction:column; align-items:center; gap:12px}
 
   /* 防止 iOS 聚焦输入时自动放大 */
   .field input,.task-add input,.add-topic-bar input,.site-add input,
@@ -1058,6 +1046,30 @@ html{-webkit-text-size-adjust:100%}
 ::-webkit-scrollbar{width:10px; height:10px}
 ::-webkit-scrollbar-thumb{background:var(--border-strong); border-radius:8px; border:2px solid var(--bg)}
 ::-webkit-scrollbar-track{background:transparent}
+
+/* ===== 输入框可见性优化 ===== */
+/* 统一：输入框背景提亮（白/浅色卡片），边框加深，聚焦带光晕 */
+.task-add input, .task-add textarea,
+.add-topic-bar input,
+.site-add input,
+.tm-add input,
+.lib-search,
+.search-box input,
+.field input, .field textarea{
+  border-color:var(--border-strong);
+  background:var(--card);
+  box-shadow:inset 0 1px 2px rgba(16,24,40,.04);
+}
+.task-add input:focus, .task-add textarea:focus,
+.add-topic-bar input:focus,
+.site-add input:focus,
+.tm-add input:focus,
+.lib-search:focus,
+.search-box input:focus,
+.field input:focus, .field textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-soft);
+}
 </style>
 </head>
 <body>
@@ -1132,16 +1144,6 @@ html{-webkit-text-size-adjust:100%}
     </nav>
 
     <div class="sidebar-foot">
-      <div class="backup-row">
-        <button class="backup-btn" onclick="exportBackup()" title="把所有数据下载为 JSON 文件">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-          <span class="full">导出备份</span><span class="short">备份</span>
-        </button>
-        <button class="backup-btn" onclick="document.getElementById('importFile').click()" title="从 JSON 文件恢复全部数据">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
-          <span class="full">导入恢复</span><span class="short">导入</span>
-        </button>
-      </div>
       <input type="file" id="importFile" accept=".json,application/json" style="display:none">
       <div class="site-settings">
         <button class="site-set-btn" onclick="toggleSiteMenu(event)" title="网站管理">
@@ -1158,6 +1160,15 @@ html{-webkit-text-size-adjust:100%}
             管理分类
           </button>
           <button id="lockAllBtn" onclick="closeSiteMenu();toggleLockAll()"></button>
+          <button class="menu-sep" aria-hidden="true" tabindex="-1" onclick="event.stopPropagation()"></button>
+          <button onclick="closeSiteMenu();exportBackup()" title="把所有数据下载为 JSON 文件">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+            <span>导出备份</span>
+          </button>
+          <button onclick="closeSiteMenu();document.getElementById('importFile').click()" title="从 JSON 文件恢复全部数据">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+            <span>导入恢复</span>
+          </button>
         </div>
       </div>
       <button class="theme-toggle" id="themeToggle">
@@ -1672,15 +1683,7 @@ html{-webkit-text-size-adjust:100%}
     <!-- 页脚 -->
     <div class="af-gap" aria-hidden="true"></div>
     <footer class="app-foot">
-      <div class="af-brand">
-        <div class="brand-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>
-        </div>
-        <div>
-          <div class="af-name">图鱼工作台</div>
-          <div class="af-sub">本地优先 · 数据仅保存在你的浏览器</div>
-        </div>
-      </div>
+
       <div class="af-copy">© <span id="footYear">2026</span> 图鱼工作台 · 本地创作工作坊 · 无需登录，可随时导出备份</div>
     </footer>
 
@@ -1938,8 +1941,7 @@ function defaultState(){
       {id:"s7", name:"电脑小百科", url:"https://weget.site/", color:"#2563EB", cat:"工具", desc:"电脑使用技巧与知识百科"},
       {id:"s8", name:"视频封面免费生成", url:"https://ps.weget.site/", color:"#7C3AED", cat:"创作", desc:"在线免费制作视频封面"},
       {id:"s9", name:"汽水音乐创造平台", url:"https://music.douyin.com/", color:"#FE2C55", cat:"娱乐", desc:"抖音旗下音乐创作平台"},
-      {id:"s10", name:"TinkerHost", url:"https://app.tinkerhost.net/index", color:"#0E9F8A", cat:"工具", desc:"免费网站主机"},
-      {id:"s11", name:"Dnshe", url:"https://my.dnshe.com/go.php?code=EejD6IU3HG", color:"#F6821F", cat:"工具", desc:"免费域名"},
+      {id:"s11", name:"Dnshe", url:"https://www.dnshe.com/", color:"#F6821F", cat:"工具", desc:"免费域名"},
       {id:"s12", name:"DeepSeek", url:"https://chat.deepseek.com/", color:"#4D6BFE", cat:"AI", desc:"AI 对话平台"},
       {id:"s13", name:"豆包", url:"https://www.doubao.com/chat/", color:"#3B82F6", cat:"AI", desc:"AI 对话平台"},
       {id:"s14", name:"文心一言", url:"https://yiyan.baidu.com/", color:"#4E8CF5", cat:"AI", desc:"AI 对话平台"},
@@ -1978,6 +1980,8 @@ function loadState(){
       s.todayTasks.forEach(function(t){ if(!t.day) t.day = "today"; });
     }
     if(Array.isArray(s.sites)){
+      /* 移除 TinkerHost 导航（用户指定） */
+      s.sites = s.sites.filter(function(x){ return !/tinkerhost\.net/i.test((x.url || "").replace(/\/+$/, "")); });
       s.sites.forEach(function(x){
         if(x.locked === undefined) x.locked = !!s.lockAllSites;
         if(!x.cat) x.cat = "常用";

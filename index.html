@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>图鱼工作台-电脑小百科</title>
+<title>电脑小百科工作台</title>
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
 <style>
 /* ===== 设计令牌 ===== */
@@ -813,6 +813,7 @@ a{color:inherit; text-decoration:none}
 .about-link b{font-size:13.5px; color:var(--text); display:block}
 .about-link span{font-size:12px; color:var(--text-3); display:block; margin-top:1px}
 .about-note{font-size:12px; color:var(--text-3); margin-top:14px; padding:9px 12px; background:var(--bg-soft); border-radius:10px}
+.about-license{font-size:12px; color:var(--text-3); margin-top:14px; padding:10px 12px 2px; text-align:center; border-top:1px dashed var(--border); line-height:1.6}
 .about-feats{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px}
 .about-feat{display:flex; align-items:flex-start; gap:10px; padding:12px 13px; border:1px solid var(--border); border-radius:12px; background:var(--bg-soft)}
 .about-feat svg{width:18px; height:18px; stroke-width:1.8; color:var(--accent-strong); flex:0 0 18px; margin-top:1px}
@@ -1093,7 +1094,7 @@ html{-webkit-text-size-adjust:100%}
   <button class="mt-btn" onclick="toggleDrawer()" aria-label="打开导航菜单">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
   </button>
-  <div class="mt-title">图鱼工作台</div>
+  <div class="mt-title">电脑小百科工作台</div>
 </header>
 <div class="app">
 
@@ -1104,7 +1105,7 @@ html{-webkit-text-size-adjust:100%}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>
       </div>
       <div>
-        <div class="brand-name">图鱼工作台</div>
+        <div class="brand-name">电脑小百科工作台</div>
         <div class="brand-sub">一站式工作坊</div>
       </div>
     </div>
@@ -1668,7 +1669,7 @@ html{-webkit-text-size-adjust:100%}
       <div class="page-head">
         <div>
           <h1>关于我们</h1>
-          <div class="sub">了解图鱼工作台，与我们取得联系</div>
+          <div class="sub">了解电脑小百科工作台，与我们取得联系</div>
         </div>
       </div>
       <div class="card">
@@ -1677,7 +1678,7 @@ html{-webkit-text-size-adjust:100%}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg>
           </div>
           <div>
-            <div class="about-name">图鱼工作台</div>
+            <div class="about-name">电脑小百科工作台</div>
             <div class="about-desc">本地优先的创作者工作台 —— 数据仅保存在你的浏览器，可随时导出备份。</div>
           </div>
         </div>
@@ -1749,7 +1750,7 @@ html{-webkit-text-size-adjust:100%}
           </div>
           <div class="ad-sec">
             <div class="ad-sec-title">许可</div>
-            <p class="ad-note">可自由使用、修改、二次分发；保留作者署名（图鱼工作台 · 本地创作工作坊）即可。</p>
+            <p class="ad-note">可自由使用、修改、二次分发；保留作者署名（电脑小百科工作台 · 本地创作工作坊）即可。</p>
           </div>
         </div>
         <div class="about-contact-title">联系方式</div>
@@ -1768,6 +1769,7 @@ html{-webkit-text-size-adjust:100%}
           </a>
         </div>
         <div class="about-note">本工作台完全在浏览器本地运行，不收集任何数据；如需交流创作经验或反馈问题，欢迎通过以上方式联系我们。</div>
+        <div class="about-license">可自由使用、修改、二次分发。保留作者署名 电脑小百科工作台 即可。</div>
       </div>
     </section>
 
@@ -1775,7 +1777,7 @@ html{-webkit-text-size-adjust:100%}
     <div class="af-gap" aria-hidden="true"></div>
     <footer class="app-foot">
 
-      <div class="af-copy">© <span id="footYear">2026</span> 图鱼工作台 · 本地创作工作坊 · 无需登录，可随时导出备份</div>
+      <div class="af-copy">© <span id="footYear">2026</span> 电脑小百科工作台 · 本地创作工作坊 · 无需登录，可随时导出备份</div>
     </footer>
 
   </main>
@@ -1993,7 +1995,7 @@ function defaultState(){
     sidebarCollapsed:false,
     focusSeconds: 25*60,
     todayTasks: [
-      {id:"t1", text:"完成「图鱼工作台」数据看板布局", done:true, time:"09:30", day:"today"},
+      {id:"t1", text:"完成「电脑小百科工作台」数据看板布局", done:true, time:"09:30", day:"today"},
       {id:"t2", text:"整理灵感素材库收藏", done:true, time:"11:00", day:"today"},
       {id:"t3", text:"撰写周更文章初稿", done:false, time:"14:00", day:"today"},
       {id:"t4", text:"更新创作数据看板周报", done:false, time:"", day:"tomorrow"},
